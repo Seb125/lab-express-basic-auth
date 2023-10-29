@@ -34,7 +34,10 @@ const index = require('./routes/index');
 app.use('/', index);
 
 const authRouter = require('./routes/auth.routes'); // <== has to be added
-app.use('/', authRouter); // <== has to be added   I should add /auth and add this to all urls
+app.use('/auth', authRouter); // <== has to be added   I should add /auth and add this to all urls
+
+const movies = require('./routes/movie.routes');
+app.use('/movie', movies);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

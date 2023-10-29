@@ -1,14 +1,20 @@
 {{!-- views/users/user-profile.hbs --}}
 
 {{!-- // you would use a cookie to save the id  --}}
-{{#if userInSession}}
-  <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/userProfile">Reload the page</a>
-  </button>
-{{else}}
-  
-  <br><p>Still no logged in user, sorry!</p>
- 
-{{/if}}
+<div class="container mt-4">
+  {{#if userInSession}}
+    <h2>Welcome, {{ userInSession.username }}!</h2>
+    <p>This is your profile page, my friend!</p>
+    <button class="btn btn-primary">
+      <a href="/userProfile" class="text-white">Reload the page</a>
+    </button>
+
+    <button class="btn btn-primary">
+      <a href="/movie/create" class="text-white">Add a new movie</a>
+    </button>
+
+  {{else}}
+    <br>
+    <p class="alert alert-warning">Still no logged-in user, sorry!</p>
+  {{/if}}
+</div>

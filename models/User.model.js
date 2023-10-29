@@ -20,7 +20,11 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: [true, 'Password is required.']
-    }
+    },
+    movies: 
+      {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Movie' }]
+      }
   },
   {
     timestamps: true
