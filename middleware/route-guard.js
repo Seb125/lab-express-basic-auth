@@ -3,7 +3,7 @@
 // checks if the user is logged in when trying to access a specific page
 const isLoggedIn = (req, res, next) => {
     if (!req.session.currentUser) {
-      return res.redirect('/login'); // you can check here if the user has a premium account and load different content
+      return res.redirect('/auth/login'); // you can check here if the user has a premium account and load different content
     }
     next();
   };

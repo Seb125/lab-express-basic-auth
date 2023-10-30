@@ -44,7 +44,7 @@ router.get('/login', isLoggedOut, (req, res) => res.render('auth/login'));
 
             const newUser =  await User.create({...req.body, passwordHash: hashedPassword})
             
-            res.redirect('/login')
+            res.redirect('/auth/login')
         } else {
           // send an error back to the page
           res.status(500).render('auth/signup', {errorMessage: 'Username already taken'})
@@ -79,7 +79,9 @@ try{
 
     if (passwordMatch) {
       req.session.currentUser = foundUser;
-      res.render('users/user-profile', { userInSession: req.session.currentUser })
+      const populated = await req.session.currentUser.populate('movies')
+      console.log(populated)
+      res.render('users/user-profile', { userInSession: populated })
     } else {
       res.render('auth/login', {errorMessage: 'Incorrect details'})
     }

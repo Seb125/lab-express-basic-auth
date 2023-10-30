@@ -47,7 +47,7 @@ router.post('/create', (req, res) => {
             const push = await pushMovies();
 
 
-            res.redirect('/movie');
+            res.redirect('/userProfile');
         } catch(err) {
             console.log(err);
            
