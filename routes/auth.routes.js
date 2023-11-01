@@ -64,7 +64,7 @@ router.get('/login', isLoggedOut, (req, res) => res.render('auth/login'));
      
 router.post('/login' , async (req, res, next) => {
 try{
-  const foundUser = await User.findOne({email: req.body.email})
+  const foundUser = await User.findOne({email: req.body.email}) // maybe I can populate my User in the session here
   
   if (req.body.email === '' || req.body.password === '') {
     res.render('auth/login', {
@@ -81,7 +81,7 @@ try{
       req.session.currentUser = foundUser;
       const populated = await req.session.currentUser.populate('movies')
       console.log(populated)
-      res.render('users/user-profile', { userInSession: populated })
+      res.redirect('/userProfile')
     } else {
       res.render('auth/login', {errorMessage: 'Incorrect details'})
     }

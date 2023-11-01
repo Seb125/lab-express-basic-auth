@@ -3,11 +3,11 @@ const Celebrity = require('../models/Celebrity.model.js');
 //const Celebrity = require('../models/Celebrity.model.js');
 const Movie = require('../models/Movie.model.js');
 const User = require('../models/User.model.js');
-
+const{isLoggedIn} = require("../middleware/route-guard");
 
 // all your routes here
 
-router.get('/create', (req, res) => {
+router.get('/create', isLoggedIn, (req, res) => {
     const getCeleb = async (req, res) => {
         try {
             const myCelebrities = await Celebrity.find();
@@ -22,7 +22,7 @@ router.get('/create', (req, res) => {
     
 })
 
-router.post('/create', (req, res) => {
+router.post('/create', isLoggedIn, (req, res) => {
     
     const createMovie = async (req, res) => {
         
