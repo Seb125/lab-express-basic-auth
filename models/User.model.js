@@ -28,7 +28,10 @@ const userSchema = new Schema(
     characters:
       {
         type: []
-      }
+      },
+    picture: {
+      type: String
+    }
   },
   {
     timestamps: true
